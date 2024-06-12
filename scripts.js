@@ -11,18 +11,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const currencySelector = document.createElement('select');
-    currencySelector.innerHTML = `
-        <option value="$">$ USD</option>
-        <option value="€">€ EUR</option>
-        <option value="₹">₹ Rs</option>
-    `;
-    document.querySelector('header').appendChild(currencySelector);
+    const exchangeRates = {
+        USD: 1,
+        EUR: 0.93,
+        RS: 83.57,
+    };
 
-    currencySelector.addEventListener('change', (event) => {
-        const currencySymbol = event.target.value;
-        document.querySelectorAll('.price').forEach(price => {
-            price.innerHTML = price.innerHTML.replace(/^\D/, currencySymbol);
+    const currencySelector = document.getElementById('currency-selector');
+    const billingCycleSelector = document.getElementById('billing-cycle');
+
+    currencySelector.addEventListener('change', updatePrices);
+    billingCycleSelector.addEventListener('change', updatePrices);
+
+    function updatePrices() {
+        const selectedCurrency = currencySelector.value;
+        const symbol = currencySelector.options[currencySelector.selectedIndex].getAttribute('data-symbol');
+        const rate = exchangeRates[selectedCurrency];
+        const billingCycle = billingCycleSelector.value;
+
+        pricingOptions.forEach(option => {
+            const basePrice = parseFloat(option.getAttribute(`data-price-${billingCycle}`));
+            const convertedPrice = (basePrice * rate).toFixed(2);
+            option.querySelector('.price').innerHTML = `${symbol}${convertedPrice}<span>/${billingCycle}</span>`;
         });
-    });
+    }
+
+    updatePrices();
 });

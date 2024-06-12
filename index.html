@@ -10,34 +10,46 @@
 <body>
     <header>
         <h1>Our Product Pricing</h1>
+        <div class="option">
+        <label for="billing-cycle">Billing Cycle</label>
+        <select id="currency-selector">
+            <option value="USD" data-symbol="$">USD</option>
+            <option value="EUR" data-symbol="€">EUR</option>
+            <option value="RS" data-symbol="₹">RS</option>
+        </select>
+        <select id="billing-cycle">
+            <option value="monthly">Monthly</option>
+            <option value="annual">Annual</option>
+        </select>
+        </div>
     </header>
     <main>
         <section class="pricing">
-            <div class="pricing-option">
+            <div class="pricing-option" data-price-monthly="10" data-price-annual="100">
                 <h2>Basic Plan</h2>
-                <p class="price">$10<span>/month</span></p>
+                <p class="price" data-price="$10">$10<span>/month</span></p>
                 <ul>
                     <li>Feature 1</li>
                     <li>Feature 2</li>
                     <li>Feature 3</li>
                 </ul>
             </div>
-            <div class="pricing-option">
+            <div class="pricing-option" data-price-monthly="20" data-price-annual="200">
                 <h2>Standard Plan</h2>
-                <p class="price">$20<span>/month</span></p>
+                <p class="price" data-price="$20">$20<span>/month</span></p>
                 <ul>
-                    <li>Feature a</li>
-                    <li>Feature b</li>
-                    <li>Feature c</li>
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
                 </ul>
             </div>
-            <div class="pricing-option">
+            <div class="pricing-option" data-price-monthly="30" data-price-annual="300">
                 <h2>Premium Plan</h2>
-                <p class="price">$30<span>/month</span></p>
+                <p class="price" data-price="$30">$30<span>/month</span></p>
                 <ul>
-                    <li>Feature x</li>
-                    <li>Feature y</li>
-                    <li>Feature z</li>
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
                 </ul>
             </div>
         </section>
